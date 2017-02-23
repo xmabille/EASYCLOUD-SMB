@@ -52,7 +52,7 @@ function New-SMBAzureDeployment {
 	[string] $SubscriptionName,
 	[Parameter(DontShow=$true)]
 	[ValidateNotNullOrEmpty()]
-	[string] $ResourceGroupPrefix = "smb_rg_",
+	[string] $ResourceGroupPrefix = "easycloudsmb_rg_",
 	[Parameter()]
 	[switch] $NoUpdateCheck,
 	[Parameter()]
@@ -299,7 +299,7 @@ function New-SMBAzureDeployment {
 			$null = invoke-operation -synchash $SyncHash -root $SyncHash.Root -Log $SyncHash.Log -code {
 				try{
 					$null = Select-AzureRmProfile -Path "$env:TEMP\SBSDeployment-$CredentialGuid.json"
-					$null = New-AzureRmResourceGroupDeployment -TemplateUri "https://raw.githubusercontent.com/Inovativ/SMBblueprint-ARM/master/azuredeploy.json" `
+					$null = New-AzureRmResourceGroupDeployment -TemplateUri "https://raw.githubusercontent.com/xmabille/EASYCLOUD-ARM/master/azuredeploy.json" `
 					-TemplateParameterObject $SyncHash.DeploymentParameters -ResourceGroupName $SyncHash.ResourceGroupName
 					if($? -eq $false){
 						throw $Error[1]
